@@ -125,6 +125,9 @@ class FiDecAgent(flax.struct.PyTreeNode):
         v_t = jax.lax.stop_gradient(v_t)
         score = v_t / jnp.maximum(1.0 - t_fisher, fisher_score_eps)
 
+        ### alternative
+        ### score = (t_fisher * v_t - x_t_fisher) / jnp.maximum(1.0 - t_fisher, fisher_score_eps)
+
         fisher = score[:, :, None] * score[:, None, :]
         fisher = fisher.reshape(batch_size, num_fisher_samples, action_dim, action_dim).mean(axis=1)
         fisher = 0.5 * (fisher + jnp.swapaxes(fisher, -1, -2))
