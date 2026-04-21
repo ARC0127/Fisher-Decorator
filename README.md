@@ -27,7 +27,7 @@ To train FiDec on a D4RL benchmark:
 
 ```bash
 python main.py \
-  --env_name=hopper-medium-v2 \
+  --env_name=antmaze-medium-play-v2 \
   --agent=agents/fidec.py \
   --offline_steps=1000000 \
   --seed=0
