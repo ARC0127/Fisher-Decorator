@@ -4,7 +4,7 @@
 
 ## Acknowledgements
 
-The research presented in this paper is led by Xiaoyuan Cheng.  
+The research presented in this paper is led by Xiaoyuan Cheng and Haoyu Wang.  
 The core codebase is primarily developed by Xiaoyuan Cheng and Haoyu Wang.
 
 This repository partially builds upon implementations from the paper  
