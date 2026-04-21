@@ -19,7 +19,8 @@ paper link: https://arxiv.org/abs/2604.17919.
 
 ## Code Implementation
 
-This repository provides the official implementation of **FiDec (Fisher Decorator)** built on top of a flow-based offline RL framework.---
+This repository provides the official implementation of **FiDec (Fisher Decorator)** built on top of a flow-based offline RL framework.
+
 
 ### Running the Code
 
