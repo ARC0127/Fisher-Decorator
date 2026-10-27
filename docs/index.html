@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Fisher Decorator (FiDec), NeurIPS 2026 Poster. Refining flow policies with a Fisher-guided local transport map. Paper, official code, method and benchmark results.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fisher Decorator · NeurIPS 2026">
+  <meta property="og:description" content="Refining Flow Policy via a Local Transport Map. Explore the method, paper results and official implementation.">
+  <meta property="og:url" content="https://arc0127.github.io/Fisher-Decorator/">
+  <meta property="og:image" content="https://arc0127.github.io/Fisher-Decorator/assets/concept.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://arc0127.github.io/Fisher-Decorator/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <title>Fisher Decorator · NeurIPS 2026</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="wordmark" href="#top" aria-label="Fisher Decorator, back to top"><img src="assets/favicon.svg" alt="" width="30" height="30">FiDec<span class="nav-divider"></span><span class="nav-venue">NeurIPS 2026</span></a>
+      <div class="nav-links"><a href="#method">Method</a><a href="#results">Results</a><a href="#getting-started">Get started</a><a href="https://github.com/ARC0127/Fisher-Decorator" class="nav-code">GitHub <span aria-hidden="true">↗</span></a></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="top" aria-labelledby="paper-title">
+      <p class="venue"><span class="venue-dot" aria-hidden="true"></span> Accepted at NeurIPS 2026 · Poster</p>
+      <h1 id="paper-title">Fisher Decorator<span>Refining Flow Policy via a Local Transport Map</span></h1>
+      <div class="authors" aria-label="Authors">
+        <a href="https://scholar.google.com/citations?hl=en&amp;user=JsLhV54AAAAJ">Xiaoyuan Cheng<sup>1,*</sup></a>
+        <a href="https://arc0127.github.io/">Haoyu Wang<sup>2,*</sup></a>
+        <span>Wenxuan Yuan<sup>3</sup></span>
+        <span>Ziyan Wang<sup>4</sup></span>
+        <span>Zonghao Chen<sup>1</sup></span>
+        <span>Li Zeng<sup>5</sup></span>
+        <a href="https://jz-fun.github.io/">Zhuo Sun<sup>6,3,†</sup></a>
+      </div>
+      <div class="affiliations" aria-label="Affiliations"><span><sup>1</sup> University College London</span><span><sup>2</sup> Shanghai Jiao Tong University</span><span><sup>3</sup> Imperial College London</span><span><sup>4</sup> King’s College London</span><span><sup>5</sup> Peking University</span><span><sup>6</sup> Shanghai University of Finance and Economics</span></div>
+      <p class="author-notes">* Equal contribution. <span>† Corresponding author.</span></p>
+      <div class="hero-actions"><a class="button primary" href="https://arxiv.org/abs/2604.17919"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>Read the paper</a><a class="button" href="https://github.com/ARC0127/Fisher-Decorator"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg>Official code</a><a class="button" href="#citation">Cite this work <span aria-hidden="true">↘</span></a></div>
+    </section>
+
+    <section class="teaser wrap" aria-label="Method overview">
+      <figure>
+        <a class="figure-link" href="assets/concept.png" data-enlarge data-title="Fisher-guided local transport · Figure 1" aria-label="Enlarge the Fisher-guided local transport overview"><img src="assets/concept.png" width="1397" height="394" alt="A behavioral action is displaced along a curved manifold. Samples move from the behavioral distribution to a refined distribution, guided by the local Fisher information matrix." fetchpriority="high"><span class="enlarge-hint" aria-hidden="true">↗ Expand figure</span></a>
+        <figcaption>A local transport map refines flow-generated actions. Fisher information shapes the displacement around the geometry of the behavioral distribution. <a href="https://arxiv.org/html/2604.17919v2#S1.F1">Figure 1 in the paper ↗</a></figcaption>
+      </figure>
+      <dl class="research-facts"><div><dt>73</dt><dd>offline benchmark tasks</dd></div><div><dt>8</dt><dd>random seeds in Table 2</dd></div><div><dt>14</dt><dd>offline-to-online tasks</dd></div></dl>
+    </section>
+
+    <section class="section wrap abstract-section" id="abstract" aria-labelledby="abstract-heading">
+      <div class="section-intro"><p class="eyebrow">The idea</p><h2 id="abstract-heading">Policy improvement has a geometry.</h2></div>
+      <div class="reading-width"><p class="lead">Flow matching can represent rich, multimodal behavior. Refining that behavior with an isotropic distance penalty can overlook which directions stay close to the data distribution.</p><p><strong>Fisher Decorator (FiDec)</strong> refines an existing flow policy through a residual local transport map. A local quadratic approximation of the KL constraint introduces the Fisher information matrix, giving the refinement an anisotropic metric. The method estimates this metric from the flow velocity and uses it to constrain policy improvement.</p><p>We study this approach on OGBench and D4RL, covering state-based control, visual manipulation and offline-to-online fine-tuning.</p><details class="paper-abstract"><summary>Read the full abstract</summary><p>Recent advances in flow-based offline reinforcement learning (RL) have achieved strong performance by parameterizing policies via flow matching. However, they still face critical trade-offs among expressiveness, optimality, and efficiency. In particular, existing flow policies interpret the L₂ regularization as an upper bound of the 2-Wasserstein distance (W₂), which can be problematic in offline settings. This issue stems from a fundamental geometric mismatch: the behavioral policy manifold is inherently anisotropic, whereas the L₂ (or upper bound of W₂) regularization is isotropic and density-insensitive, leading to systematically misaligned optimization directions. To address this, we revisit offline RL from a geometric perspective and show that policy refinement can be formulated as a local transport map—an initial flow policy augmented by a residual displacement. By analyzing the induced density transformation, we derive a local quadratic approximation of the KL-constrained objective governed by the Fisher information matrix, enabling a tractable anisotropic optimization formulation. By leveraging the score function embedded in the flow velocity, we obtain a corresponding quadratic constraint for efficient optimization. Our results reveal that the optimality gap in prior methods arises from their isotropic approximation. In contrast, our framework achieves a controllable approximation error within a provable neighborhood of the optimal solution. Extensive experiments demonstrate state-of-the-art performance across diverse offline RL benchmarks.</p></details></div>
+    </section>
+
+    <section class="section method-section" id="method" aria-labelledby="method-heading">
+      <div class="wrap">
+        <div class="section-intro"><p class="eyebrow">Method</p><h2 id="method-heading">A small displacement.<br>A more informed direction.</h2><p>Keep the behavioral flow. Learn a local refinement shaped by Fisher information.</p></div>
+        <ol class="method-steps"><li><span class="step-number">01</span><h3>Model the behavior</h3><p>A flow policy learns the action distribution in the offline dataset and produces a base action.</p><div class="equation" aria-label="a equals mu beta of s and z">a = μ<sub>β</sub>(s, z)</div></li><li><span class="step-number">02</span><h3>Read the local geometry</h3><p>The flow velocity provides a score estimate, from which the local Fisher metric is constructed.</p><div class="equation" aria-label="I equals score times score transpose">I(s, a) = ∇ log π<sub>β</sub> ∇ log π<sub>β</sub><sup>⊤</sup></div></li><li><span class="step-number">03</span><h3>Decorate the action</h3><p>A residual map improves the action value under a Fisher-weighted displacement constraint.</p><div class="equation" aria-label="T s of a equals a plus delta of s and a">T<sub>s</sub>(a) = a + δ(s, a)</div></li></ol>
+        <div class="geometry-story"><div class="geometry-text"><p class="eyebrow">Why the metric matters</p><h3>Different directions.<br>Different costs.</h3><p>An isotropic L₂ penalty treats directions uniformly. The Fisher metric weights a displacement by the local structure of the behavioral distribution.</p><p>The paper’s illustrative examples compare how FQL, DeFlow and FiDec refine the same base distribution in multimodal and curved-support settings.</p><a class="text-link" href="https://arxiv.org/html/2604.17919v2#S3">Explore the derivation <span aria-hidden="true">↗</span></a></div><figure><a class="figure-link" href="assets/refinement.png" data-enlarge data-title="Isotropic and anisotropic refinement · Figure 3" aria-label="Enlarge the comparison of isotropic and anisotropic refinement"><img src="assets/refinement.png" width="1022" height="577" alt="Two illustrative value landscapes compare base flow samples with FQL, DeFlow and FiDec refinements. FiDec samples follow favorable regions within the multimodal or curved distribution." loading="lazy"><span class="enlarge-hint" aria-hidden="true">↗ Expand</span></a><figcaption>Illustrative policy-refinement examples, reproduced from Figure 3.</figcaption></figure></div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="results" aria-labelledby="results-heading">
+      <div class="section-intro"><p class="eyebrow">Experiments</p><h2 id="results-heading">From navigation to manipulation.</h2><p>73 offline tasks across OGBench, D4RL and visual control.</p></div>
+      <figure class="benchmark-figure"><a class="figure-link" href="assets/benchmarks.png" data-enlarge data-title="Benchmark environments · Figure 6" aria-label="Enlarge the benchmark environment overview"><img src="assets/benchmarks.png" width="1625" height="1029" alt="Benchmark scenes include maze navigation, ant and humanoid locomotion, cube and scene manipulation, sliding puzzles and dexterous hand tasks." loading="lazy"><span class="enlarge-hint" aria-hidden="true">↗ Explore environments</span></a><figcaption>Benchmark environments from the paper’s Figure 6.</figcaption></figure>
+      <div class="results-heading"><h3>Flow-policy comparison</h3><a class="text-link" href="https://arxiv.org/html/2604.17919v2#S4.T2">All 12 methods in the paper <span aria-hidden="true">↗</span></a></div>
+      <p class="table-explanation">Reported means ± deviations from Table 2, averaged over eight random seeds. Each OGBench row aggregates five tasks. Scores are reproduced from the paper.</p>
+      <div class="tabs" role="tablist" aria-label="Offline benchmark results" hidden><button id="tab-ogbench" role="tab" aria-controls="panel-ogbench" aria-selected="true" tabindex="0">OGBench <span>50 tasks</span></button><button id="tab-d4rl" role="tab" aria-controls="panel-d4rl" aria-selected="false" tabindex="-1">D4RL <span>18 tasks</span></button><button id="tab-visual" role="tab" aria-controls="panel-visual" aria-selected="false" tabindex="-1">Visual <span>5 tasks</span></button></div>
+      <div id="panel-ogbench" class="result-panel" role="tabpanel" aria-labelledby="tab-ogbench" tabindex="0"><h4 class="no-js-heading">OGBench · 50 tasks</h4><div class="table-scroll"><table><caption class="sr-only">OGBench results, Table 2. Fifty tasks in ten categories.</caption><thead><tr><th scope="col">Task category</th><th scope="col">FQL</th><th scope="col">DeFlow</th><th scope="col" class="ours">FiDec <span>ours</span></th></tr></thead><tbody><tr><th scope="row">AntMaze · large</th><td>79 ± 3</td><td>81 ± 11</td><td class="ours best">87 ± 1</td></tr><tr><th scope="row">AntMaze · giant</th><td>9 ± 6</td><td>5 ± 7</td><td class="ours best">13 ± 4</td></tr><tr><th scope="row">HumanoidMaze · medium</th><td>58 ± 5</td><td>57 ± 29</td><td class="ours best">72 ± 2</td></tr><tr><th scope="row">HumanoidMaze · large</th><td>4 ± 2</td><td>5 ± 5</td><td class="ours best">8 ± 3</td></tr><tr><th scope="row">AntSoccer · arena</th><td>60 ± 2</td><td>62 ± 20</td><td class="ours best">64 ± 2</td></tr><tr><th scope="row">Cube · single</th><td class="best">96 ± 1</td><td>90 ± 6</td><td class="ours">94 ± 1</td></tr><tr><th scope="row">Cube · double</th><td>29 ± 1</td><td>38 ± 22</td><td class="ours best">43 ± 4</td></tr><tr><th scope="row">Scene</th><td class="best">56 ± 2</td><td>51 ± 40</td><td class="ours best">56 ± 1</td></tr><tr><th scope="row">Puzzle · 3 × 3</th><td>30 ± 1</td><td>24 ± 38</td><td class="ours best">43 ± 1</td></tr><tr><th scope="row">Puzzle · 4 × 4</th><td class="best">17 ± 2</td><td>4 ± 2</td><td class="ours">15 ± 1</td></tr></tbody></table></div></div>
+      <div id="panel-d4rl" class="result-panel" role="tabpanel" aria-labelledby="tab-d4rl" tabindex="0"><h4 class="no-js-heading">D4RL · 18 tasks</h4><div class="table-scroll"><table><caption class="sr-only">D4RL results, Table 2. Six AntMaze and twelve Adroit tasks.</caption><thead><tr><th scope="col">Task category</th><th scope="col">FQL</th><th scope="col">DeFlow</th><th scope="col" class="ours">FiDec <span>ours</span></th></tr></thead><tbody><tr><th scope="row">AntMaze <span class="cell-note">6 tasks</span></th><td>84 ± 3</td><td>81 ± 7</td><td class="ours best">87 ± 1</td></tr><tr><th scope="row">Adroit <span class="cell-note">12 tasks</span></th><td class="best">52 ± 1</td><td>34 ± 41</td><td class="ours">46 ± 2</td></tr></tbody></table></div></div>
+      <div id="panel-visual" class="result-panel" role="tabpanel" aria-labelledby="tab-visual" tabindex="0"><h4 class="no-js-heading">Visual control · 5 tasks</h4><div class="table-scroll"><table><caption class="sr-only">Visual manipulation results, Table 2. Five tasks.</caption><thead><tr><th scope="col">Task category</th><th scope="col">FQL</th><th scope="col">DeFlow</th><th scope="col" class="ours">FiDec <span>ours</span></th></tr></thead><tbody><tr><th scope="row">Visual manipulation <span class="cell-note">5 tasks</span></th><td class="best">65 ± 2</td><td>59 ± 38</td><td class="ours">64 ± 1</td></tr></tbody></table></div></div>
+      <p class="table-footnote"><strong>Bold</strong> marks the highest reported mean among these three flow methods, including ties. It does not indicate statistical significance.</p>
+    </section>
+
+    <section class="section online-section" id="online" aria-labelledby="online-heading"><div class="wrap"><div class="section-intro"><p class="eyebrow">Beyond the offline dataset</p><h2 id="online-heading">Continue learning through interaction.</h2><p>Offline-to-online fine-tuning on 14 tasks, starting from the offline-trained policy.</p></div><figure><a class="figure-link" href="assets/online.png" data-enlarge data-title="Offline-to-online fine-tuning · Figure 4" aria-label="Enlarge the offline-to-online learning curves"><img src="assets/online.png" width="1020" height="384" alt="Offline-to-online learning curves comparing IQL, ReBRAC, FQL, DeFlow and FiDec on AntMaze, HumanoidMaze, AntSoccer, Cube, Scene and Puzzle. Light curves represent individual tasks and dark curves their average." loading="lazy"><span class="enlarge-hint" aria-hidden="true">↗ Expand figure</span></a><figcaption>Fine-tuning begins after 1M offline gradient steps. Light curves show individual tasks; dark curves show the average. Original results from <a href="https://arxiv.org/html/2604.17919v2#S4.F4">Figure 4 ↗</a>.</figcaption></figure></div></section>
+
+    <section class="section wrap getting-started" id="getting-started" aria-labelledby="start-heading"><div class="section-intro"><p class="eyebrow">Official implementation</p><h2 id="start-heading">Try Fisher Decorator.</h2><p>JAX / Flax implementation with OGBench and D4RL training entry points.</p></div><div class="code-layout"><div><h3>Start with an OGBench task</h3><p>Prepare the dependencies described in the repository, then train FiDec with an explicit agent configuration. The dataset loader handles OGBench data.</p><a class="text-link" href="https://github.com/ARC0127/Fisher-Decorator#quick-start">Installation &amp; full instructions <span aria-hidden="true">↗</span></a><p class="small-note">Online fine-tuning currently supports state inputs. The training entry point rejects visual online runs.</p></div><div class="code-block"><div class="code-top"><span>Terminal</span><button type="button" class="copy-button" data-copy="train-command" hidden>Copy command</button></div><pre><code id="train-command">WANDB_MODE=offline python main.py \
+  --env_name=cube-double-play-singletask-v0 \
+  --agent=agents/fidec.py \
+  --offline_steps=1000000 \
+  --seed=0</code></pre></div></div></section>
+
+    <section class="section citation-section" id="citation" aria-labelledby="citation-heading"><div class="wrap"><div class="section-intro"><p class="eyebrow">Build on this work</p><h2 id="citation-heading">Citation</h2><p>BibTeX for the arXiv preprint. Accepted at NeurIPS 2026 · Poster.</p></div><div class="code-block citation-block"><div class="code-top"><a href="assets/citation.bib" download>Download .bib <span aria-hidden="true">↗</span></a><button type="button" class="copy-button" data-copy="bibtex" hidden>Copy BibTeX</button></div><pre><code id="bibtex">@misc{cheng2026fisherdecorator,
+  title={Fisher Decorator: Refining Flow Policy via a Local Transport Map},
+  author={Xiaoyuan Cheng and Haoyu Wang and Wenxuan Yuan and Ziyan Wang
+          and Zonghao Chen and Li Zeng and Zhuo Sun},
+  year={2026},
+  eprint={2604.17919},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2604.17919}
+}</code></pre></div><p class="copy-status" role="status" aria-live="polite" id="copy-status"></p></div></section>
+    <section class="acknowledgements wrap" aria-labelledby="acknowledgements-heading"><h2 id="acknowledgements-heading">Acknowledgements</h2><p>The research and core codebase are led by Xiaoyuan Cheng and Haoyu Wang. This repository partially builds on <a href="https://arxiv.org/abs/2601.10471">DeFlow: Decoupling Manifold Modeling and Value Maximization for Offline Policy Extraction</a>. This work was supported by funding from Prof. Zhuo Sun.</p></section>
+  </main>
+  <footer class="wrap footer"><a class="footer-name" href="#top">Fisher Decorator <span>· NeurIPS 2026</span></a><div><a href="https://arxiv.org/abs/2604.17919">Paper</a><a href="https://github.com/ARC0127/Fisher-Decorator">Code</a><a href="#top">Back to top ↑</a></div></footer>
+  <dialog id="figure-dialog" aria-labelledby="figure-dialog-title"><div class="dialog-top"><h2 id="figure-dialog-title">Figure</h2><button type="button" id="close-dialog" aria-label="Close enlarged figure">Close <span aria-hidden="true">×</span></button></div><div class="dialog-figure"><img id="dialog-image" alt=""></div><p>Scroll to inspect the figure. Press Escape to close.</p></dialog>
+</body>
+</html>

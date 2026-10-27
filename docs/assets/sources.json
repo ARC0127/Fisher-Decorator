@@ -1,0 +1,22 @@
+{
+  "concept.png": {
+    "source": "https://arxiv.org/html/2604.17919v2/concept.png",
+    "paper": "https://arxiv.org/abs/2604.17919v2",
+    "modification": "Original image, unchanged"
+  },
+  "refinement.png": {
+    "source": "https://arxiv.org/html/2604.17919v2/Fig_3.png",
+    "paper": "https://arxiv.org/abs/2604.17919v2",
+    "modification": "Original image, unchanged"
+  },
+  "online.png": {
+    "source": "https://arxiv.org/html/2604.17919v2/o2o.png",
+    "paper": "https://arxiv.org/abs/2604.17919v2",
+    "modification": "Original image, unchanged"
+  },
+  "benchmarks.png": {
+    "source": "https://arxiv.org/html/2604.17919v2/benchmarking_tasks.png",
+    "paper": "https://arxiv.org/abs/2604.17919v2",
+    "modification": "Original image, unchanged"
+  }
+}
